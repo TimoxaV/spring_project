@@ -1,5 +1,6 @@
 package spring.intro.dao.impl;
 
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import spring.intro.dao.UserDao;
 import spring.intro.exceptions.DataProcessingException;
 import spring.intro.model.User;
-import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -43,6 +43,15 @@ public class UserDaoImpl implements UserDao {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from User ", User.class)
                     .getResultList();
+        }
+    }
+
+    @Override
+    public User get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("from User u where u.id = :userId ", User.class)
+                    .setParameter("userId", id)
+                    .getSingleResult();
         }
     }
 }
