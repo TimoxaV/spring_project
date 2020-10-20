@@ -38,11 +38,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public UserResponseDto get(@PathVariable Long userId) {
-        return userService.listUsers().stream()
-                .filter(user -> user.getId().equals(userId))
-                .map(this::mapUserToDto)
-                .findFirst()
-                .orElseThrow();
+        return mapUserToDto(userService.get(userId));
     }
 
     private UserResponseDto mapUserToDto(User user) {

@@ -45,4 +45,13 @@ public class UserDaoImpl implements UserDao {
                     .getResultList();
         }
     }
+
+    @Override
+    public User get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("from User u where u.id = :userId ", User.class)
+                    .setParameter("userId", id)
+                    .getSingleResult();
+        }
+    }
 }
