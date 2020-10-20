@@ -1,5 +1,6 @@
 package spring.intro.dao.impl;
 
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import spring.intro.dao.UserDao;
 import spring.intro.exceptions.DataProcessingException;
 import spring.intro.model.User;
-import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
